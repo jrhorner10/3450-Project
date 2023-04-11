@@ -1,6 +1,6 @@
 const url = "http://localhost:8383"
 
-const addHome = {
+const updateHome = {
     id: document.querySelector('#id'),
     homeType: document.querySelector('#homeType'),
     addressID: document.querySelector('#addressID'),
@@ -13,22 +13,22 @@ const addHome = {
     submit: document.querySelector('#submit')
 };
 
-addHome.submit.addEventListener('click', (e) => {
+updateHome.submit.addEventListener('click', (e) => {
 
     fetch(url + '/Home', {
-        method: 'post',
+        method: 'put',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-                id: addHome.id.value,
-                homeType: addHome.homeType.value,
-                addressID: addHome.addressID.value,
-                floorSpace: addHome.floorSpace.value,
-                floors: addHome.floors.value,
-                bedrooms: addHome.bedrooms.value,
-                bathrooms: addHome.bathrooms.value,
-                landSize: addHome.landSize.value,
-                yearConstructed: addHome.yearConstructed.value})
+                id: updateHome.id.value,
+                homeType: updateHome.homeType.value,
+                addressID: updateHome.addressID.value,
+                floorSpace: updateHome.floorSpace.value,
+                floors: updateHome.floors.value,
+                bedrooms: updateHome.bedrooms.value,
+                bathrooms: updateHome.bathrooms.value,
+                landSize: updateHome.landSize.value,
+                yearConstructed: updateHome.yearConstructed.value})
     });
 })
