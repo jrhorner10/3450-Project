@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Homes</title>
+    <script src="../js/searchHomes.js" defer></script>
+</head>
+<body>
+    <h1>Search For Homes</h1>
+    <table>
+        <tr>
+            <td>Home Type</td>
+            <td><select id="homeType">
+                <option value="N/A">N/A</option>
+                <option value="mansion">Mansion</option>
+                <option value="apartment">Apartment</option>
+                <option value="townhome">Townhome</option>
+                <option value="condo">Condo</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Built After</td>
+            <td><input type="text" placeholder="N/A" id="yearConstructed"></td>
+        </tr>
+        <tr>
+            <td>Bedrooms</td>
+            <td><input type="text" placeholder="N/A" id="bedrooms"></td>
+            <td><select id="bedroomsCompare">
+                <option value="atLeast">At Least</option>
+                <option value="atMost">At Most</option>
+                <option value="exactly">Exactly</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Floorspace</td>
+            <td><input type="text" placeholder="N/A" id="floorspace"></td>
+            <td><select id="floorspaceCompare">
+                <option value="atLeast">At Least</option>
+                <option value="atMost">At Most</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Sort By</td>
+            <td><select id="sortBy">
+                <option value="YearConstructed">Year Built</option>
+                <option value="Floorspace">Floorspace</option>
+                <option value="HomeID">ID</option>
+            </select></td>
+            <td><select id="sortByOrder">
+                <option value="DESC">Largest</option>
+                <option value="ASC">Smallest</option>
+            </select></td>
+        </tr>
+    </table>
+    <button id="submit">Search</button>
+    <div id="output"></div>
+</body>
+</html>

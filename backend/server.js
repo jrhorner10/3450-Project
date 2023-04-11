@@ -88,3 +88,70 @@ app.put('/Home', (req, res) => {
         }
     })
 })
+
+app.get('/Home', (req, res) => {
+
+    let myHomeType
+    if (req.query.homeType === "N/A") {
+        myHomeType = "HomeType"
+    } else {
+        myHomeType = `"${req.query.homeType}"`
+    }
+
+    let myYearConstructed
+    if (req.query.yearConstructed === "") {
+        myYearConstructed = -1
+    } else {
+        myYearConstructed = req.query.yearConstructed
+    }
+
+    let myBedrooms
+    let myBedroomsCompare
+    if (req.query.bedrooms === "") {
+        myBedrooms = -1
+        myBedroomsCompare = ">="
+    } else {
+        myBedrooms = req.query.bedrooms
+        switch(req.query.bedroomsCompare) {
+            case "atLeast":
+                myBedroomsCompare = ">="
+                break
+            case "atMost":
+                myBedroomsCompare = "<="
+                break
+            case "exactly":
+                myBedroomsCompare = "="
+                break
+        }
+    }
+
+    let myFloorspace
+    let myFloorspaceCompare
+    if (req.query.floorspace === "") {
+        myFloorspace = "Floorspace"
+        myFloorspaceCompare = "="
+    } else {
+        myFloorspace = req.query.floorspace
+        switch(req.query.floorspaceCompare) {
+            case "atLeast":
+                myFloorspaceCompare = ">="
+                break
+            case "atMost":
+                myFloorspaceCompare = "<="
+                break
+        }
+    }
+
+    let attributeSort = req.query.sortBy
+    let mySortOrder = req.query.sortByOrder
+
+    let queryString = "SELECT * FROM HOME WHERE HomeType = " + myHomeType + " AND YearConstructed >= " + myYearConstructed + " AND Bedrooms " + myBedroomsCompare + " " + myBedrooms + " AND Floorspace " + myFloorspaceCompare + " " + myFloorspace + " ORDER BY " + attributeSort + " " + mySortOrder
+
+    db.all(queryString, [], (err, data) => {
+        if (err) {
+            console.log(err)
+            res.json({})
+        }
+        res.json(data)
+    })
+})
